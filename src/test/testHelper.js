@@ -1,6 +1,6 @@
 /* eslint import/no-extraneous-dependencies: 0 */
 
-require('babel-register')()
+require('@babel/register')()
 
 const jsdom = require('jsdom')
 
@@ -8,7 +8,7 @@ const { JSDOM } = jsdom
 
 // Enzyme config
 const { configure } = require('enzyme')
-const Adapter = require('enzyme-adapter-react-16')
+const Adapter = require('enzyme-adapter-react-18')
 
 configure({ adapter: new Adapter() })
 

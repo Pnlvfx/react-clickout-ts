@@ -15,14 +15,13 @@ export default {
       babelrc: false,
       exclude: ['node_modules/**'],
       plugins: [
-        'external-helpers',
-        'transform-flow-strip-types'
+        '@babel/plugin-external-helpers',
+        '@babel/plugin-transform-flow-strip-types'
       ],
       presets: [
-        'react',
-        ['env', { modules: false }],
-        'stage-0',
-        'flow'
+        '@babel/preset-react',
+        ['@babel/preset-env', { modules: false }],
+        '@babel/preset-flow'
       ]
     }),
     commonjs()
