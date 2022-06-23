@@ -1,6 +1,6 @@
 {
   "name": "react-clickout-ts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A simple clickout handler for React",
   "main": "lib/react-clickout-handler.cjs.js",
   "module": "lib/react-clickout-handler.esm.js",
@@ -14,7 +14,7 @@
   "scripts": {
     "build": "rimraf lib && rollup -c && yarn copy-source",
     "ci": "yarn test && yarn lint && yarn flow check",
-    "copy-source": "cp src/index.js lib/react-clickout-handler.cjs.js.flow && cp src/index.js lib/react-clickout-handler.esm.js.flow && cp src/index.d.ts ./index.d.ts",
+    "copy-source": "cp src/index.js lib/react-clickout-handler.cjs.js.flow && cp src/index.js lib/react-clickout-handler.esm.js.flow && cp src/index.d.ts index.d.ts",
     "lint": "eslint src",
     "prepublish": "yarn build",
     "preversion": "yarn ci",
