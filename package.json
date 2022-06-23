@@ -4,7 +4,7 @@
   "description": "A flexible clickout handler for React",
   "main": "lib/react-clickout-handler.cjs.js",
   "module": "lib/react-clickout-handler.esm.js",
-  "author": "Knowledge to Practice <opensource@k2p.com> (http://www.knowledgetopractice.com/)",
+  "author": "Simone Gauli - simonegauli@gmail.com",
   "license": "MIT",
   "private": false,
   "repository": {
