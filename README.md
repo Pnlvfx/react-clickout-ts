@@ -23,11 +23,15 @@ or
   npm install --save react-clickout-ts
 ```
 
+BREAKING CHANGES: V 1.2.2
+
+- Replace import ClickOutHandler from "react-clickout-ts" with import { ClickOutHandler } from "react-clickout-ts";
+
 ### Getting Started
 
 ```js
 import React from 'react'
-import ClickOutHandler from 'react-clickout-ts'
+import { ClickOutHandler } from 'react-clickout-ts'
 
 const MyComponent = () => {
   const handleClickOut = () => {
@@ -62,7 +66,7 @@ If there are any elements outside of your ClickOutHandler component that you do 
 
 ```js
 import React, { Component } from 'react'
-import ClickOutHandler from 'react-clickout-ts'
+import { ClickOutHandler } from 'react-clickout-ts'
 
 export default class MyComponent extends Component {
   state = {
@@ -104,7 +108,7 @@ Use the `refProp` prop
 
 ```js
 import React from 'react'
-import ClickOutHandler from 'react-clickout-ts'
+import { ClickOutHandler } from 'react-clickout-ts'
 import styled from 'styled-components'
 
 const MyDiv = styled.div`
@@ -126,7 +130,7 @@ Pass a function as the child
 
 ```js
 import React from 'react'
-import ClickOutHandler from 'react-clickout-ts'
+import { ClickOutHandler } from 'react-clickout-ts'
 import styled from 'styled-components'
 
 const MyDiv = styled.div`

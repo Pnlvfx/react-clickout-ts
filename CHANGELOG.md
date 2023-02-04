@@ -3,6 +3,7 @@
 ## [1.2.2]
 
 - Adding typescript support and upgrading old dependencies
+- Replace import ClickOutHandler from "react-clickout-ts" with import { ClickOutHandler } from "react-clickout-ts";
 
 ## [1.2.1]
 
