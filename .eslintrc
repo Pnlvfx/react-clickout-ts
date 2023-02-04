@@ -1,26 +1,37 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true,
-    "mocha": true
-  },
+  "root": true,
   "extends": [
-    "airbnb",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:flowtype/recommended"
+    "prettier",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
-    "flowtype"
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-hooks"
   ],
   "rules": {
-    "comma-dangle": ["error", "never"],
-    "import/extensions": [2, { "js": "never", "jsx": "never"}],
-    "jsx-quotes": ["error", "prefer-single"],
-    "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
-    "react/sort-comp": 0,
-    "semi": ["error", "never"]
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "JSX": true
   }
 }
