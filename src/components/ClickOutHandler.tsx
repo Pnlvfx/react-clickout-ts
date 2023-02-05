@@ -31,7 +31,6 @@ const ClickOutHandler = ({
   )
 
   useEffect(() => {
-    console.log('fired')
     const handleClickOut = (ev: Event) => {
       if (shouldFire(ev)) {
         onClickOut(ev)
