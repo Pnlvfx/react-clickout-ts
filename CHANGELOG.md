@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.3]
+
+- Fixing a bug when using ignoredElements
+- Remove refProp and wrapWith props as they are no more needed
+- Upgrading the code to ES6 module and removing some unused dependencies
+
 ## [1.2.2]
 
 - Adding typescript support and upgrading old dependencies
