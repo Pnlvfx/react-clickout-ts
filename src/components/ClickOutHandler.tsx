@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react'
+import { Children, ReactNode, cloneElement, useCallback, useEffect, useRef } from 'react'
 
 type Props = {
   // eslint-disable-next-line no-empty-pattern
@@ -51,7 +51,7 @@ const ClickOutHandler = ({
     return children({ ref: wrapperRef })
   }
 
-  return React.cloneElement(React.Children.only(children as any), {
+  return cloneElement(Children.only(children as any), {
     ref: wrapperRef,
   })
 }
