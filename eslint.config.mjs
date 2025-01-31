@@ -8,7 +8,7 @@ import sonarjs from 'eslint-plugin-sonarjs';
 import tseslint from 'typescript-eslint';
 import unicorn from 'eslint-plugin-unicorn';
 import reactPlugin from 'eslint-plugin-react';
-// @ts-expect-error notypes created by the manteiners.
+// @ts-expect-error notypes created by the mantainers.
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default tseslint.config(
