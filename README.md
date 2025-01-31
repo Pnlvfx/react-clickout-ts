@@ -8,6 +8,7 @@ A React component to handle clicking outside of an element.
 
 ### Features
 
+- Perfectly written to be used with React 19
 - Wrap a single element or multiple elements to watch for clickout behavior
 - Ignore one or more elements (clickout behavior won't be triggered) by adding them to the `ignoredElements` prop
 - Enable or disable the clickout behavior on the fly with the `enabled` prop
