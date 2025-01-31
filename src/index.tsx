@@ -1,14 +1,18 @@
-import { Children, type ReactNode, cloneElement, useCallback, useEffect, useRef } from 'react';
+import { Children, type ReactElement, type ReactNode, RefObject, cloneElement, isValidElement, useCallback, useEffect, useRef } from 'react';
+
+interface RenderProps {
+  ref: React.RefObject<HTMLElement | null>;
+}
 
 interface Props {
-  // eslint-disable-next-line no-empty-pattern
-  children: ReactNode | (({}) => unknown);
+  children: ReactNode | ((props: RenderProps) => ReactElement);
   enabled?: boolean;
   events?: string[];
   ignoredElements?: HTMLElement[];
   onClickOut: (ev: Event) => void;
 }
 
+// eslint-disable-next-line sonarjs/function-return-type
 export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown', 'touchstart'], ignoredElements = [], onClickOut }: Props) => {
   const wrapperRef = useRef<HTMLElement>(null);
 
@@ -45,8 +49,12 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
     return children({ ref: wrapperRef });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-  return cloneElement(Children.only(children as any), {
+  if (!isValidElement(children)) {
+    if (process.env['NODE_ENV'] === 'development') throw new Error('Invalid element passed to ClickoutHandler');
+    return children;
+  }
+
+  return cloneElement(Children.only(children) as ReactElement<{ ref?: RefObject<HTMLElement | null> }>, {
     ref: wrapperRef,
   });
 };
