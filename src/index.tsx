@@ -1,7 +1,7 @@
-import { Children, type ReactElement, type ReactNode, RefObject, cloneElement, isValidElement, useCallback, useEffect, useRef } from 'react';
+import { Children, type ReactElement, type ReactNode, type RefObject, cloneElement, isValidElement, useCallback, useEffect, useRef } from 'react';
 
 interface RenderProps {
-  ref: React.RefObject<HTMLElement | null>;
+  ref: RefObject<HTMLElement | null>;
 }
 
 interface Props {
