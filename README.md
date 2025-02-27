@@ -48,13 +48,13 @@ const Modal = () => {
 
 ### Props
 
-| Prop              | Type                 | Required | Default                       | Description                                                                                                                                |
-| ----------------- | -------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`        | `ReactNode`          | true     |                               | The element(s) you want to trigger the `onClickOut` callback when clicked outside of                                                       |
-| `enabled`         | `boolean`            | false    | `true`                        | Enables or disables the clickout behavior. This can be useful to ensure the `onClickOut` callback is only executed when you want it to be. |
-| `events`          | `string[]`           | false    | `['mousedown', 'touchstart']` | Allows for specifying custom events to trigger the `onClickOut` callback                                                                   |
-| `ignoredElements` | `Object[]`           | false    | `[]`                          | An array of refs for elements to exclude from triggering the clickout behavior                                                             |
-| `onClickOut`      | `(ev: Event) => any` | true     |                               | Function to be called when the clickout behavior is triggered. Receives the click event as an argument.                                    |
+| Prop              | Type                  | Required | Default                       | Description                                                                                                                                |
+| ----------------- | --------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `children`        | `ReactNode`           | true     |                               | The element(s) you want to trigger the `onClickOut` callback when clicked outside of                                                       |
+| `enabled`         | `boolean`             | false    | `true`                        | Enables or disables the clickout behavior. This can be useful to ensure the `onClickOut` callback is only executed when you want it to be. |
+| `events`          | `string[]`            | false    | `['mousedown', 'touchstart']` | Allows for specifying custom events to trigger the `onClickOut` callback                                                                   |
+| `ignoredElements` | `HTMLElement[]`       | false    | `[]`                          | An array of refs for elements to exclude from triggering the clickout behavior                                                             |
+| `onClickOut`      | `(ev: Event) => void` | true     |                               | Function to be called when the clickout behavior is triggered. Receives the click event as an argument.                                    |
 
 ### Examples
 
