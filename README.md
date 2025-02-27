@@ -67,7 +67,7 @@ import { useRef, useState } from 'react'
 import { ClickOutHandler } from 'react-clickout-ts'
 
 const Component = () => {
-  const ignoreRef = useRef<HTMLElement | null>(null)
+  const ignoreRef = useRef<HTMLElement>(null)
 
   const handleClickOutside = (ev: Event) => {
     console.log('Clicked outside')
