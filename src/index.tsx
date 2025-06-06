@@ -50,7 +50,6 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
   }
 
   if (!isValidElement(children)) {
-    if (process.env['NODE_ENV'] === 'development') throw new Error('Invalid element passed to ClickoutHandler');
     return children;
   }
 
