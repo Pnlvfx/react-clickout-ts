@@ -1,28 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-
 import eslint from '@eslint/js';
 import globals from 'globals';
 import sonarjs from 'eslint-plugin-sonarjs';
 import tseslint from 'typescript-eslint';
 import unicorn from 'eslint-plugin-unicorn';
 import reactPlugin from 'eslint-plugin-react';
-// @ts-expect-error notypes created by the mantainers.
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default tseslint.config(
-  {
-    ignores: ['dist', 'coverage'],
-  },
+  { ignores: ['dist', 'coverage'] },
   eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
   // @ts-expect-error wrong types created by the manteiners.
   reactPlugin.configs.flat.recommended,
   reactPlugin.configs.flat['jsx-runtime'],
-  unicorn.configs['flat/all'],
+  reactHooks.configs['recommended-latest'],
+  unicorn.configs.all,
   sonarjs.configs.recommended,
   {
     languageOptions: {
@@ -34,16 +27,9 @@ export default tseslint.config(
     },
   },
   {
-    plugins: {
-      'react-hooks': reactHooks,
-    },
-    rules: reactHooks.configs.recommended.rules,
-  },
-  {
     rules: {
       'no-var': 'error',
       semi: 'error',
-      indent: ['error', 2, { SwitchCase: 1 }],
       'no-multi-spaces': 'error',
       'no-empty-function': 'error',
       'no-floating-decimal': 'error',
