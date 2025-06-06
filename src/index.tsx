@@ -50,6 +50,10 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
   }
 
   if (!isValidElement(children)) {
+    if (process.env['NODE_ENV'] !== 'production') {
+      // eslint-disable-next-line no-console
+      console.warn('ClickOutHandler expects a single React element as a child.');
+    }
     return children;
   }
 
