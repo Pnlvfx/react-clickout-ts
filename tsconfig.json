@@ -1,5 +1,5 @@
 {
-  "include": ["src", "eslint.config.mjs", "jest.config.ts", "__tests__"],
+  "include": ["src", "eslint.config.mjs", "jest.config.ts", "__tests__", "tools"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
