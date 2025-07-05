@@ -9,7 +9,7 @@ interface Props {
   enabled?: boolean;
   events?: string[];
   ignoredElements?: HTMLElement[];
-  onClickOut: (ev: Event) => void;
+  onClickOut?: (ev: Event) => void;
 }
 
 // eslint-disable-next-line sonarjs/function-return-type
@@ -30,10 +30,11 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
 
   useEffect(() => {
     const handleClickOut = (ev: Event) => {
-      if (shouldFire(ev)) {
+      if (onClickOut && shouldFire(ev)) {
         onClickOut(ev);
       }
     };
+
     for (const event of events) {
       document.addEventListener(event, handleClickOut);
     }
