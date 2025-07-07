@@ -18,13 +18,13 @@ A React component to handle click-outside behavior for elements. Perfect for mod
 ### Installation
 
 ```sh
-  yarn add react-clickout-ts
+yarn add react-clickout-ts
 ```
 
 or
 
 ```sh
-  npm install --save react-clickout-ts
+npm install --save react-clickout-ts
 ```
 
 ### Getting Started
@@ -48,13 +48,33 @@ const Modal = () => {
 
 ### Props
 
-| Prop              | Type                  | Required | Default                       | Description                                                                                                                                |
-| ----------------- | --------------------- | -------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `children`        | `ReactNode`           | true     |                               | The element(s) you want to trigger the `onClickOut` callback when clicked outside of                                                       |
-| `enabled`         | `boolean`             | false    | `true`                        | Enables or disables the clickout behavior. This can be useful to ensure the `onClickOut` callback is only executed when you want it to be. |
-| `events`          | `string[]`            | false    | `['mousedown', 'touchstart']` | Allows for specifying custom events to trigger the `onClickOut` callback                                                                   |
-| `ignoredElements` | `HTMLElement[]`       | false    | `[]`                          | An array of refs for elements to exclude from triggering the clickout behavior                                                             |
-| `onClickOut`      | `(ev: Event) => void` | true     |                               | Function to be called when the clickout behavior is triggered. Receives the click event as an argument.                                    |
+**`children`** (required)
+
+- Type: `ReactNode`
+- The element(s) you want to trigger the `onClickOut` callback when clicked outside of
+
+**`enabled`**
+
+- Type: `boolean`
+- Default: `true`
+- Enables or disables the clickout behavior
+
+**`events`**
+
+- Type: `string[]`
+- Default: `['mousedown', 'touchstart']`
+- Custom events to trigger the `onClickOut` callback
+
+**`ignoredElements`**
+
+- Type: `RefObject<HTMLElement | null>[]`
+- Default: `[]`
+- Array of refs for elements to exclude from triggering clickout behavior
+
+**`onClickOut`** (required)
+
+- Type: `(ev: Event) => void`
+- Function called when clickout behavior is triggered. Receives the click event as an argument. |
 
 ### Examples
 
@@ -76,7 +96,7 @@ const Component = () => {
   return (
     <div>
       <div ref={ignoreRef}>This should be ignored!</div>
-      <ClickOutHandler ignoredElements={[ignoreRef.current]} onClickOut={handleClickOutside}>
+      <ClickOutHandler ignoredElements={[ignoreRef]} onClickOut={handleClickOutside}>
         <div>Content goes here</div>
       </ClickOutHandler>
     </div>

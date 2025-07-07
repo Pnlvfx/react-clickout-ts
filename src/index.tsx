@@ -8,7 +8,7 @@ interface Props {
   children: ReactNode | ((props: RenderProps) => ReactElement);
   enabled?: boolean;
   events?: string[];
-  ignoredElements?: HTMLElement[];
+  ignoredElements?: RefObject<HTMLElement | null>[];
   onClickOut?: (ev: Event) => void;
 }
 
@@ -22,7 +22,7 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
         enabled &&
         wrapperRef.current &&
         !wrapperRef.current.contains(ev.target as HTMLElement) &&
-        !ignoredElements.some((element) => element.contains(ev.target as HTMLElement))
+        !ignoredElements.some((elementRef) => elementRef.current?.contains(ev.target as HTMLElement))
       );
     },
     [enabled, ignoredElements],

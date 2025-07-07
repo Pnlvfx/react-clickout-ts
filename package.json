@@ -1,7 +1,7 @@
 {
   "name": "react-clickout-ts",
   "description": "A simple clickout handler for React",
-  "version": "2025.7.5",
+  "version": "2025.7.7",
   "author": {
     "email": "simonegauli@gmail.com",
     "name": "Simone Gauli"
