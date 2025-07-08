@@ -71,7 +71,7 @@ const Modal = () => {
 - Default: `[]`
 - Array of refs for elements to exclude from triggering clickout behavior
 
-**`onClickOut`** (required)
+**`onClickOut`**
 
 - Type: `(ev: Event) => void`
 - Function called when clickout behavior is triggered. Receives the click event as an argument. |
