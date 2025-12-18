@@ -16,7 +16,7 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
     const shouldFire = (ev: Event) => {
       return (
         enabled &&
-        document.hasFocus() &&
+        (ev.target as Node).ownerDocument?.hasFocus() &&
         wrapperRef.current &&
         !wrapperRef.current.contains(ev.target as HTMLElement) &&
         !ignoredElements.some((elementRef) => elementRef.current?.contains(ev.target as HTMLElement))
