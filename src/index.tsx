@@ -1,18 +1,18 @@
-import { Children, type ReactElement, type ReactNode, type RefObject, cloneElement, isValidElement, useCallback, useEffect, useRef } from 'react';
+import { type ReactElement, type ReactNode, type RefObject, useCallback, useEffect, useRef } from 'react';
+import { Slot } from './slot';
 
 interface RenderProps {
   ref: RefObject<HTMLElement | null>;
 }
 
 interface Props {
-  children: ReactNode | ((props: RenderProps) => ReactElement);
-  enabled?: boolean;
-  events?: string[];
-  ignoredElements?: RefObject<HTMLElement | null>[];
-  onClickOut?: (ev: Event) => void;
+  readonly children: ReactNode | ((props: RenderProps) => ReactElement);
+  readonly enabled?: boolean;
+  readonly events?: string[];
+  readonly ignoredElements?: RefObject<HTMLElement | null>[];
+  readonly onClickOut?: (ev: Event) => void;
 }
 
-// eslint-disable-next-line sonarjs/function-return-type
 export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown', 'touchstart'], ignoredElements = [], onClickOut }: Props) => {
   const wrapperRef = useRef<HTMLElement>(null);
 
@@ -20,6 +20,7 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
     (ev: Event) => {
       return (
         enabled &&
+        document.hasFocus() &&
         wrapperRef.current &&
         !wrapperRef.current.contains(ev.target as HTMLElement) &&
         !ignoredElements.some((elementRef) => elementRef.current?.contains(ev.target as HTMLElement))
@@ -47,18 +48,9 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
   }, [events, onClickOut, shouldFire]);
 
   if (typeof children === 'function') {
+    // eslint-disable-next-line react-hooks/refs
     return children({ ref: wrapperRef });
   }
 
-  if (!isValidElement(children)) {
-    if (process.env['NODE_ENV'] !== 'production') {
-      // eslint-disable-next-line no-console
-      console.warn('ClickOutHandler expects a single React element as a child.');
-    }
-    return children;
-  }
-
-  return cloneElement(Children.only(children) as ReactElement<{ ref?: RefObject<HTMLElement | null> }>, {
-    ref: wrapperRef,
-  });
+  return <Slot ref={wrapperRef}>{children}</Slot>;
 };

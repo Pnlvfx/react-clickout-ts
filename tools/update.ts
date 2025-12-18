@@ -1,12 +1,9 @@
-import { updateLocalDeps } from '@goatjs/updater';
+import { updateUnversionedDeps } from '@goatjs/dbz/update';
 
 const run = async () => {
-  await updateLocalDeps({
+  await updateUnversionedDeps({
     react: 'canary',
     'react-dom': 'canary',
-    'eslint-plugin-react-hooks': 'canary',
-    '@goatjs/rimraf': 'github:Pnlvfx/goatjs#workspace=@goatjs/rimraf',
-    '@goatjs/updater': 'github:Pnlvfx/goatjs#workspace=@goatjs/updater',
   });
 };
 
