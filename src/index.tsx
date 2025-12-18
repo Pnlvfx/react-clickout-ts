@@ -1,4 +1,4 @@
-import { type ReactNode, type RefObject, useCallback, useEffect, useRef } from 'react';
+import { type ReactNode, type RefObject, useEffect, useRef } from 'react';
 import { Slot } from './slot';
 
 interface Props {
@@ -12,8 +12,8 @@ interface Props {
 export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown', 'touchstart'], ignoredElements = [], onClickOut }: Props) => {
   const wrapperRef = useRef<HTMLElement>(null);
 
-  const shouldFire = useCallback(
-    (ev: Event) => {
+  useEffect(() => {
+    const shouldFire = (ev: Event) => {
       return (
         enabled &&
         document.hasFocus() &&
@@ -21,11 +21,8 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
         !wrapperRef.current.contains(ev.target as HTMLElement) &&
         !ignoredElements.some((elementRef) => elementRef.current?.contains(ev.target as HTMLElement))
       );
-    },
-    [enabled, ignoredElements],
-  );
+    };
 
-  useEffect(() => {
     const handleClickOut = (ev: Event) => {
       if (onClickOut && shouldFire(ev)) {
         onClickOut(ev);
@@ -41,7 +38,7 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
         document.removeEventListener(event, handleClickOut);
       }
     };
-  }, [events, onClickOut, shouldFire]);
+  }, [events, onClickOut, enabled, ignoredElements]);
 
   return <Slot ref={wrapperRef}>{children}</Slot>;
 };
