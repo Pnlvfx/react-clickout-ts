@@ -1,12 +1,8 @@
-import { type ReactElement, type ReactNode, type RefObject, useCallback, useEffect, useRef } from 'react';
+import { type ReactNode, type RefObject, useCallback, useEffect, useRef } from 'react';
 import { Slot } from './slot';
 
-interface RenderProps {
-  ref: RefObject<HTMLElement | null>;
-}
-
 interface Props {
-  readonly children: ReactNode | ((props: RenderProps) => ReactElement);
+  readonly children: ReactNode;
   readonly enabled?: boolean;
   readonly events?: string[];
   readonly ignoredElements?: RefObject<HTMLElement | null>[];
@@ -46,11 +42,6 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
       }
     };
   }, [events, onClickOut, shouldFire]);
-
-  if (typeof children === 'function') {
-    // eslint-disable-next-line react-hooks/refs
-    return children({ ref: wrapperRef });
-  }
 
   return <Slot ref={wrapperRef}>{children}</Slot>;
 };
