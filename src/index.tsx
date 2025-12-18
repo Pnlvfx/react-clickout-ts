@@ -1,4 +1,4 @@
-import { type ReactNode, type RefObject, useEffect, useRef } from 'react';
+import { type ReactNode, type RefObject, useEffect, useRef, useState } from 'react';
 import { Slot } from './slot';
 
 interface Props {
@@ -10,14 +10,33 @@ interface Props {
 }
 
 export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown', 'touchstart'], ignoredElements = [], onClickOut }: Props) => {
+  const [isPageFocused, setIsPageFocused] = useState(true);
   const wrapperRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const onFocus = () => {
+      setIsPageFocused(true);
+    };
+
+    const onBlur = () => {
+      setIsPageFocused(false);
+    };
+
+    globalThis.addEventListener('focus', onFocus);
+    globalThis.addEventListener('blur', onBlur);
+
+    return () => {
+      globalThis.removeEventListener('focus', onFocus);
+      globalThis.removeEventListener('blur', onBlur);
+    };
+  }, []);
 
   useEffect(() => {
     const shouldFire = (ev: Event) => {
       return (
         enabled &&
-        (ev.target as Node).ownerDocument?.hasFocus() &&
         wrapperRef.current &&
+        isPageFocused &&
         !wrapperRef.current.contains(ev.target as HTMLElement) &&
         !ignoredElements.some((elementRef) => elementRef.current?.contains(ev.target as HTMLElement))
       );
@@ -38,7 +57,7 @@ export const ClickOutHandler = ({ children, enabled = true, events = ['mousedown
         document.removeEventListener(event, handleClickOut);
       }
     };
-  }, [events, onClickOut, enabled, ignoredElements]);
+  }, [events, onClickOut, enabled, ignoredElements, isPageFocused]);
 
   return <Slot ref={wrapperRef}>{children}</Slot>;
 };
