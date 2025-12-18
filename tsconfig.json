@@ -1,6 +1,6 @@
 {
   "extends": "@goatjs/typescript-config/react-library/tsconfig.json",
-  "include": ["src", "eslint.config.mjs", "tools", "vita.config.ts"],
+  "include": ["src", "eslint.config.mjs", "jest.config.ts", "__tests__", "tools", "vita.config.ts"],
   "compilerOptions": {
     "outDir": "dist",
     "moduleResolution": "bundler",
