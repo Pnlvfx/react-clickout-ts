@@ -10,26 +10,24 @@ export const useClickOutside = (ref: RefObject<HTMLElement | null>, { enabled = 
   useEffect(() => {
     if (!enabled) return;
 
-    const handlePointerDown = (event: PointerEvent) => {
+    const handler = (event: Event) => {
       const target = event.target as HTMLElement | null;
-      if (!target) return;
-
-      const el = ref.current;
-      if (!el) return;
-
-      if (el.contains(target)) return;
-
-      if (ignoredElements.some((ignored) => ignored.current?.contains(target))) {
-        return;
-      }
+      if (!target || ref.current?.contains(target)) return;
+      if (ignoredElements.some((ignored) => ignored.current?.contains(target))) return;
 
       onClickOut?.(event);
     };
 
-    document.addEventListener('pointerdown', handlePointerDown);
+    const types = ['click', 'touchstart'];
+
+    for (const type of types) {
+      document.addEventListener(type, handler);
+    }
 
     return () => {
-      document.removeEventListener('pointerdown', handlePointerDown);
+      for (const type of types) {
+        document.removeEventListener(type, handler);
+      }
     };
   }, [enabled, ignoredElements, onClickOut, ref]);
 };
