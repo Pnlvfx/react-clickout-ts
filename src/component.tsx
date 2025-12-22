@@ -10,6 +10,7 @@ export interface ClickOutProps {
   readonly onClickOut?: (ev: Event) => void;
 }
 
+/** @deprecated Prefer using the hook that doesn't use the slot */
 export const ClickOutHandler = ({ children, enabled = true, ignoredElements = [], onClickOut }: ClickOutProps) => {
   const wrapperRef = useRef<HTMLElement>(null);
 
