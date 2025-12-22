@@ -1,4 +1,4 @@
-import { type RefObject, useEffect, useRef } from 'react';
+import { type RefObject, useEffect } from 'react';
 
 export interface ClickOutsideParams {
   enabled?: boolean;
@@ -6,30 +6,11 @@ export interface ClickOutsideParams {
   onClickOut?: (event: Event) => void;
 }
 
-export function useClickOutside(ref: RefObject<HTMLElement | null>, { enabled = true, ignoredElements = [], onClickOut }: ClickOutsideParams) {
-  const ignoreNextPointerRef = useRef(false);
-
-  useEffect(() => {
-    const handleBlur = () => {
-      ignoreNextPointerRef.current = true;
-    };
-
-    window.addEventListener('blur', handleBlur);
-
-    return () => {
-      window.removeEventListener('blur', handleBlur);
-    };
-  }, []);
-
+export const useClickOutside = (ref: RefObject<HTMLElement | null>, { enabled = true, ignoredElements = [], onClickOut }: ClickOutsideParams) => {
   useEffect(() => {
     if (!enabled) return;
 
     const handlePointerDown = (event: PointerEvent) => {
-      if (ignoreNextPointerRef.current) {
-        ignoreNextPointerRef.current = false;
-        return;
-      }
-
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
@@ -51,4 +32,4 @@ export function useClickOutside(ref: RefObject<HTMLElement | null>, { enabled = 
       document.removeEventListener('pointerdown', handlePointerDown);
     };
   }, [enabled, ignoredElements, onClickOut, ref]);
-}
+};
